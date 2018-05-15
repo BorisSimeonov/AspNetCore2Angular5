@@ -1,10 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TestMakerFreeWebApp
+namespace TestMakerFree
 {
     public class Startup
     {
@@ -19,7 +23,6 @@ namespace TestMakerFreeWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddRouting(options => { options.LowercaseUrls = true; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,14 +41,17 @@ namespace TestMakerFreeWebApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
-
             app.UseStaticFiles(new StaticFileOptions()
             {
-                OnPrepareResponse = (context) => 
+                OnPrepareResponse = (context) =>
                 {
-                    context.Context.Response.Headers["Cache-Control"] = Configuration["StaticFiles:Headers:Cache-Control"];
-                    context.Context.Response.Headers["Pragma"] = Configuration["StaticFiles:Headers:Pragma"];
-                    context.Context.Response.Headers["Expires"] = Configuration["StaticFiles:Headers:Expires"];
+                    // Disable caching for all static files. 
+                    context.Context.Response.Headers["Cache-Control"] =
+                        Configuration["StaticFiles:Headers:Cache-Control"];
+                    context.Context.Response.Headers["Pragma"] =
+                        Configuration["StaticFiles:Headers:Pragma"];
+                    context.Context.Response.Headers["Expires"] =
+                        Configuration["StaticFiles:Headers:Expires"];
                 }
             });
 
@@ -53,8 +59,7 @@ namespace TestMakerFreeWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
