@@ -19,13 +19,11 @@ namespace TestMakerFree
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,6 +39,18 @@ namespace TestMakerFree
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            CustomizeResponseHeaders(app);
+            ConfigureRoutes(app);
+        }
+
+        private void CustomizeResponseHeaders(IApplicationBuilder app)
+        {
+            app.Use((context, next) =>
+            {
+                context.Response.Headers.Remove("Server");
+                return next();
+            });
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 OnPrepareResponse = (context) =>
@@ -54,7 +64,10 @@ namespace TestMakerFree
                         Configuration["StaticFiles:Headers:Expires"];
                 }
             });
+        }
 
+        private void ConfigureRoutes(IApplicationBuilder app)
+        {
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
