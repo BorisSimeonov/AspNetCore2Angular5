@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using TestMakerFreeWebApp.ViewModels;
+using TestMakerFreeWebApp.Web.ViewModels;
 
-namespace TestMakerFreeWebApp.Controllers
+namespace TestMakerFreeWebApp.Web.Controllers
 {
     [Route("api/[controller]")]
     public class QuestionController : Controller

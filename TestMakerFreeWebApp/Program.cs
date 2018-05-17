@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace TestMakerFree
+namespace TestMakerFreeWebApp.Web
 {
     public class Program
     {

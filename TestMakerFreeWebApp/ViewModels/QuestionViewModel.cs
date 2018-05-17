@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace TestMakerFreeWebApp.ViewModels
+namespace TestMakerFreeWebApp.Web.ViewModels
 {
     public class QuestionViewModel
     {

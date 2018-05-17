@@ -5,6 +5,11 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
+    <Authors>TestMakerFreeWebApp</Authors>
+    <Company>Boris Simeonov</Company>
+    <PackageId>TestMakerFreeWebApp</PackageId>
+    <AssemblyName>TestMakerFreeWebApp.Web</AssemblyName>
+    <RootNamespace>TestMakerFreeWebApp.Web</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
