@@ -13,13 +13,23 @@
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/login']">
+                        <span class='glyphicon glyphicon-log-in'></span> Login
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/home']">
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <!--<li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/quiz-list']">
                         <span class='glyphicon glyphicon-education'></span> Quizzes
+                    </a>
+                </li>-->
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/about']">
+                        <span class='glyphicon glyphicon-info-sign'></span> About
                     </a>
                 </li>
             </ul>

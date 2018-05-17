@@ -2,8 +2,9 @@
 <ul class="quizzes list-group">
     <li 
         *ngFor="let quiz of quizzes" 
-        [ngClass]="{'active text-uppercase' : quiz === selectedQuiz}"
-        class="list-group-item list-group-item-info text-center"
+        [ngClass]="{'active' : quiz === selectedQuiz}"
+        [style.color]="quiz === selectedQuiz ? 'white' : black"
+        class="list-group-item list-group-item-text text-center"
         (click)="onSelect(quiz)">
         <span>{{ quiz.Title }}</span>
     </li>
