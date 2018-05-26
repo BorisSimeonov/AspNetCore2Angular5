@@ -37,7 +37,10 @@ namespace TestMakerFreeWebApp.Web.Controllers
 
             if (quiz == null)
             {
-                return NotFound();
+                return NotFound(new
+                {
+                    Error = String.Format("Quiz ID {0} has not been found", id)
+                });
             }
 
             return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
@@ -48,9 +51,20 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// </summary>
         /// <param name="m">The QuizViewModel containing the data to insert</param>
         [HttpPut]
-        public IActionResult Put(QuizViewModel m)
+        public async Task<IActionResult> Put([FromBody] QuizViewModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return new StatusCodeResult(500);
+            }
+
+            QuizDetailsServiceModel quiz = await QuizService.Create(
+                model.Title,
+                model.Description,
+                model.Text,
+                model.Notes);
+
+            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
@@ -58,9 +72,26 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// </summary>
         /// <param name="m">The QuizViewModel containing the data to update</param>
         [HttpPost]
-        public IActionResult Post(QuizViewModel m)
+        public async Task<IActionResult> Post([FromBody] QuizViewModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return new StatusCodeResult(500);
+            }
+
+            if (!await QuizService.QuizExists(model.Id))
+            {
+                return NotFound();
+            }
+
+            QuizDetailsServiceModel quiz = await QuizService.Update(
+                model.Id,
+                model.Title,
+                model.Description,
+                model.Text,
+                model.Notes);
+
+            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
@@ -68,9 +99,16 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// </summary>
         /// <param name="id">The ID of an existing Quiz</param>
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            if (!await QuizService.QuizExists(id))
+            {
+                return NotFound(new { Error = String.Format("Quiz ID {0} has not been found", id) });
+            }
+
+            await QuizService.Delete(id);
+
+            return new OkResult();
         }
 
         /// <summary>
