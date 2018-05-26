@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMakerFreeWebApp.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMakerFreeWebApp.Services", "TestMakerFreeWebApp.Services\TestMakerFreeWebApp.Services.csproj", "{4F9F73E1-2D65-4EA1-8E03-7FFAF25E655C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMakerFreeWebApp.Domain", "TestMakerFreeWebApp.Domain\TestMakerFreeWebApp.Domain.csproj", "{F91AAD7B-1195-4542-B260-9B203ECEA06C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMakerFreeWebApp.Domain", "TestMakerFreeWebApp.Domain\TestMakerFreeWebApp.Domain.csproj", "{F91AAD7B-1195-4542-B260-9B203ECEA06C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMakerFreeWebApp.Common", "TestMakerFreeWebApp.Common\TestMakerFreeWebApp.Common.csproj", "{725CF46E-1972-4C3F-B0ED-F8461D8565E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F91AAD7B-1195-4542-B260-9B203ECEA06C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F91AAD7B-1195-4542-B260-9B203ECEA06C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F91AAD7B-1195-4542-B260-9B203ECEA06C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{725CF46E-1972-4C3F-B0ED-F8461D8565E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725CF46E-1972-4C3F-B0ED-F8461D8565E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725CF46E-1972-4C3F-B0ED-F8461D8565E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725CF46E-1972-4C3F-B0ED-F8461D8565E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

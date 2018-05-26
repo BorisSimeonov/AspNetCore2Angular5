@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using TestMakerFreeWebApp.Services.Interfaces;
+using TestMakerFreeWebApp.Services.Models;
 using TestMakerFreeWebApp.Web.Controllers.AbstractControllers;
 using TestMakerFreeWebApp.Web.ViewModels;
 
@@ -10,6 +14,16 @@ namespace TestMakerFreeWebApp.Web.Controllers
 {
     public class QuizController : BaseApiController
     {
+        private IQuizService QuizService { get; }
+
+        private IMapper Mapper { get; }
+
+        public QuizController(IQuizService quizService, IMapper mapper)
+        {
+            QuizService = quizService;
+            Mapper = mapper;
+        }
+
         /// <summary>
         /// GET: api/quiz/{id}
         /// Retrieves the Quiz with the given {id}
@@ -17,18 +31,16 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// <param name="id">The ID of an existing Quiz</param>
         /// <returns>the Quiz with the given {id}</returns>
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var v = new QuizViewModel()
-            {
-                Id = id,
-                Title = String.Format("Sample quiz with id {0}", id),
-                Description = "Not a real quiz: it's just a sample!",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
-            };
+            var quiz = await QuizService.Get(id);
 
-            return new JsonResult(v, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+
+            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>

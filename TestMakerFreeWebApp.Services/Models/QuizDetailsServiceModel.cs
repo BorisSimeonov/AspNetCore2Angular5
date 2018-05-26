@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.ComponentModel;
+﻿using System;
 using TestMakerFreeWebApp.Common.Mapping;
-using TestMakerFreeWebApp.Services.Models;
+using TestMakerFreeWebApp.Domain.DomainModels;
 
-namespace TestMakerFreeWebApp.Web.ViewModels
+namespace TestMakerFreeWebApp.Services.Models
 {
-    [JsonObject(MemberSerialization.OptOut)]
-    public class QuizViewModel : IMapFrom<QuizDetailsServiceModel>
+    public class QuizDetailsServiceModel : IMapFrom<Quiz>
     {
         public int Id { get; set; }
 
@@ -19,15 +16,12 @@ namespace TestMakerFreeWebApp.Web.ViewModels
 
         public string Notes { get; set; }
 
-        [DefaultValue(0)]
         public int Type { get; set; }
 
-        [DefaultValue(0)]
         public int Flags { get; set; }
 
         public string UserId { get; set; }
 
-        [JsonIgnore]
         public int ViewCount { get; set; }
 
         public DateTime CreatedDate { get; set; }
