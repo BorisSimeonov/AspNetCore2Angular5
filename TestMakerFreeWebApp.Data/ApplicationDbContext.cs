@@ -6,7 +6,7 @@ using TestMakerFreeWebApp.Domain.DomainModels;
 
 namespace TestMakerFreeWebApp.Data
 {
-    public class TestMakerFreeDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<ApplicationUser> Users { get; set; }
 
@@ -18,7 +18,7 @@ namespace TestMakerFreeWebApp.Data
 
         public DbSet<Result> Results { get; set; }
 
-        public TestMakerFreeDbContext(DbContextOptions<TestMakerFreeDbContext> options) : base(options) 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         {
         }
 

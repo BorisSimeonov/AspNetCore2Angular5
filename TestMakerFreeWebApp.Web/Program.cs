@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using TestMakerFreeWebApp.Web.Infrastructure.Extensions;
 
 namespace TestMakerFreeWebApp.Web
 {
@@ -7,7 +8,9 @@ namespace TestMakerFreeWebApp.Web
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            BuildWebHost(args)
+                .MigrateAndSeedDatabase()
+                .Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

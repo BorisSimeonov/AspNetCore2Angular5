@@ -21,7 +21,7 @@ namespace TestMakerFreeWebApp.Web
         {
             services.AddMvc();
             services.AddEntityFrameworkSqlServer();
-            services.AddDbContext<TestMakerFreeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

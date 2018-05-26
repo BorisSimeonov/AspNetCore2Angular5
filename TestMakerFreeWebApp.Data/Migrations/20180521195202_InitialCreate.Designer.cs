@@ -10,7 +10,7 @@ using TestMakerFreeWebApp.Data;
 
 namespace TestMakerFreeWebApp.Data.Migrations
 {
-    [DbContext(typeof(TestMakerFreeDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20180521195202_InitialCreate")]
     partial class InitialCreate
     {
