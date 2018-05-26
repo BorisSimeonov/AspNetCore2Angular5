@@ -2,12 +2,12 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using TestMakerFreeWebApp.Web.Controllers.AbstractControllers;
 using TestMakerFreeWebApp.Web.ViewModels;
 
 namespace TestMakerFreeWebApp.Web.Controllers
 {
-    [Route("api/[controller]")]
-    public class QuestionController : Controller
+    public class QuestionController : BaseApiController
     {
         /// <summary>
         /// Retrieves the Question with the given {id}

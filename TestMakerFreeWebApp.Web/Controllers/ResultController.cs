@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using TestMakerFreeWebApp.Web.Controllers.AbstractControllers;
 using TestMakerFreeWebApp.Web.ViewModels;
 
 namespace TestMakerFreeWebApp.Web.Controllers
 {
-    [Route("api/[controller]")]
-    public class ResultController : Controller
+    public class ResultController : BaseApiController
     {
         /// <summary>
         /// Retrieves the Result with the given {id}

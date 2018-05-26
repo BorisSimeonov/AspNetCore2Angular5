@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using TestMakerFreeWebApp.Web.Controllers.AbstractControllers;
 using TestMakerFreeWebApp.Web.ViewModels;
 
 namespace TestMakerFreeWebApp.Web.Controllers
 {
-    [Route("api/[controller]")]
-    public class QuizController : Controller
+    public class QuizController : BaseApiController
     {
         /// <summary>
         /// GET: api/quiz/{id}
