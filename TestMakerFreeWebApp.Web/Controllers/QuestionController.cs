@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TestMakerFreeWebApp.Services.Interfaces;
+using TestMakerFreeWebApp.Services.Models;
 using TestMakerFreeWebApp.Web.Controllers.AbstractControllers;
 using TestMakerFreeWebApp.Web.ViewModels;
 
@@ -9,15 +13,37 @@ namespace TestMakerFreeWebApp.Web.Controllers
 {
     public class QuestionController : BaseApiController
     {
+        private IQuestionService QuestionService { get; }
+
+        private IQuizService QuizService { get; }
+
+        private IMapper Mapper { get; }
+
+        public QuestionController(IQuestionService questionService, IMapper mapper)
+        {
+            QuestionService = questionService;
+            Mapper = mapper;
+        }
+
         /// <summary>
         /// Retrieves the Question with the given {id}
         /// </summary>
         /// &lt;param name="id">The ID of an existing Question</param>
         /// <returns>the Question with the given {id}</returns>
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> GetAsync(int id)
         {
-            return Content("Not implemented (yet)!");
+            var question = await QuestionService.Get(id);
+
+            if (question == null)
+            {
+                return NotFound(new
+                {
+                    Error = String.Format("Question ID {0} has not been found", id)
+                });
+            }
+
+            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
@@ -25,9 +51,19 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// </summary>
         /// <param name="m">The QuestionViewModel containing the data to insert</param>
         [HttpPut]
-        public IActionResult Put(QuestionViewModel m)
+        public async Task<IActionResult> PutAsync([FromBody] QuestionViewModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return new StatusCodeResult(500);
+            }
+
+            QuestionDetailsServiceModel question = await QuestionService.Create(
+                model.Text,
+                model.Notes,
+                model.QuizId);
+
+            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
@@ -35,9 +71,30 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// </summary>
         /// <param name="m">The QuestionViewModel containing the data to update</param>
         [HttpPost]
-        public IActionResult Post(QuestionViewModel m)
+        public async Task<IActionResult> PostAsync([FromBody] QuestionViewModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return new StatusCodeResult(500);
+            }
+
+            if (!await QuestionService.QuestionExists(model.Id))
+            {
+                return NotFound(new { Error = String.Format("Question ID {0} has not been found", model.Id) });
+            }
+
+            if (!await QuizService.QuizExists(model.QuizId))
+            {
+                return NotFound(new { Error = String.Format("Quiz ID {0} has not been found", model.QuizId) });
+            }
+
+            QuestionDetailsServiceModel question = await QuestionService.Update(
+                model.Id,
+                model.Text,
+                model.Notes,
+                model.QuizId);
+
+            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
@@ -45,38 +102,26 @@ namespace TestMakerFreeWebApp.Web.Controllers
         /// </summary>
         /// <param name="id">The ID of an existing Question</param>
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet("All/{quizId}")]
-        public IActionResult All(int quizId)
-        {
-            var sampleQuestions = new List<QuestionViewModel>();
-
-            sampleQuestions.Add(new QuestionViewModel
+            if (!await QuestionService.QuestionExists(id))
             {
-                Id = 1,
-                QuizId = quizId,
-                Text = "What do you value most in your life?",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
-            });
-
-            for (int i = 2; i <= 5; i++)
-            {
-                sampleQuestions.Add(new QuestionViewModel
-                {
-                    Id = i,
-                    QuizId = quizId,
-                    Text = String.Format("Sample Question {0}", i),
-                    CreatedDate = DateTime.Now,
-                    LastModifiedDate = DateTime.Now
-                });
+                return NotFound(new { Error = String.Format("Question ID {0} has not been found", id) });
             }
 
-            return new JsonResult(sampleQuestions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            await QuestionService.Delete(id);
+
+            return new OkResult();
+        }
+
+        [HttpGet("all/{quizId}")]
+        public async Task<IActionResult> AllAsync(int quizId)
+        {
+            var questions = await QuestionService.All(quizId);
+
+            return new JsonResult(
+                questions.Select(q => Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(q)),
+                new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
     }
 }

@@ -19,7 +19,6 @@ export class QuizComponent {
         this.quiz = <Quiz>{};
 
         var id = activatedRoute.snapshot.params["id"]
-        console.log(id);
 
         if (id) {
             var url = `${this.baseUrl}api/quiz/${id}`;
