@@ -74,7 +74,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
                 UserId = userId
             };
 
-            DbContext.Quizzes.AddAsync(newQuiz);
+            await DbContext.Quizzes.AddAsync(newQuiz);
             await DbContext.SaveChangesAsync();
             return Mapper.Map<Quiz, QuizDetailsServiceModel>(newQuiz);
         }
