@@ -74,6 +74,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
                 UserId = userId
             };
 
+            DbContext.Quizzes.AddAsync(newQuiz);
             await DbContext.SaveChangesAsync();
             return Mapper.Map<Quiz, QuizDetailsServiceModel>(newQuiz);
         }
@@ -103,7 +104,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
             var quiz = await DbContext.Quizzes
                 .FirstOrDefaultAsync(q => q.Id == id);
 
-            if (quiz == null)
+            if (quiz != null)
             {
                 DbContext.Quizzes.Remove(quiz);
                 await DbContext.SaveChangesAsync();

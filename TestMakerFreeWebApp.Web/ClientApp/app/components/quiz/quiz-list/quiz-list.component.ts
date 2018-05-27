@@ -49,10 +49,8 @@ export class QuizListComponent implements OnInit {
     onSelect(quiz: Quiz) {
         if (this.selectedQuiz == quiz) {
             this.selectedQuiz = undefined;
-            console.log("quiz details closed.");
         } else {
             this.selectedQuiz = quiz;
-            console.log(`quiz with Id ${this.selectedQuiz.Id} has been selected.`);
             this.router.navigate(["quiz", this.selectedQuiz.Id])
         }
     }

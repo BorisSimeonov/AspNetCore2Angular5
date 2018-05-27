@@ -4,16 +4,20 @@
     <ul class="form-group text-center">
         <li>
             <label class="text-info">Title:</label>
-            <input [ngModel]="quiz.Title" 
+            <input [ngModel]="quiz.Title"
                    placeholder="Insert the title..."
-                   class="form-control"/>
+                   class="form-control" />
         </li>
         <li>
             <label class="text-info">Description:</label>
-            <textarea [ngModel]="quiz.Description" 
+            <textarea [ngModel]="quiz.Description"
                       placeholder="Insert a suitable description..."
                       class="form-control"
                       rows="4"></textarea>
         </li>
     </ul>
+    <div>
+        <input type="button" *ngIf="quiz!.Id" value="Edit" (click)="onEdit()" />
+        <input type="button" *ngIf="quiz!.Id" value="Delete this Quiz" (click)="onDelete()" />
+    </div>
 </div>

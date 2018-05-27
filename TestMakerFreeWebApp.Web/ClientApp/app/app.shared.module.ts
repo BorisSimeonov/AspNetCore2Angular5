@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { QuizListComponent } from './components/quiz/quiz-list/quiz-list.component';
 import { QuizComponent } from "./components/quiz/quiz/quiz.component";
+import { QuizEditComponent } from "./components/quiz/quiz-edit/quiz-edit.component";
 import { AboutComponent } from "./components/about/about.component";
 import { LoginComponent } from "./components/login/login.component";
 import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.component";
@@ -21,6 +22,7 @@ import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.co
         NavMenuComponent,
         QuizListComponent,
         QuizComponent,
+        QuizEditComponent,
         AboutComponent,
         PageNotFoundComponent
     ],
@@ -33,6 +35,8 @@ import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.co
             { path: 'login', component: LoginComponent },
             { path: 'home', component: HomeComponent },
             { path: 'about', component: AboutComponent },
+            { path: 'quiz/edit/:id', component: QuizEditComponent },
+            { path: 'quiz/create', component: QuizEditComponent },
             { path: 'quiz/:id', component: QuizComponent },
             { path: 'quiz-list', component: QuizListComponent },
             { path: '**', component: PageNotFoundComponent }
