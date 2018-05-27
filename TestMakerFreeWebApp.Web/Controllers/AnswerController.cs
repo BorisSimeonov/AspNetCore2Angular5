@@ -79,14 +79,14 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 return new StatusCodeResult(500);
             }
 
-            if (!await AnswerService.AnswerExists(model.Id))
+            if (!await AnswerService.Exists(model.Id))
             {
                 return NotFound(new { Error = String.Format("Answer ID {0} has not been found", model.Id) });
             }
 
-            if (!await QuestionService.QuestionExists(model.QuestionId))
+            if (!await QuestionService.Exists(model.QuestionId))
             {
-                return NotFound(new { Error = String.Format("Question ID {0} has not been found", model.QuizId) });
+                return NotFound(new { Error = String.Format("Question ID {0} has not been found", model.QuestionId) });
             }
 
             AnswerDetailsServiceModel answer = await AnswerService.Update(
@@ -105,7 +105,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            if (!await AnswerService.AnswerExists(id))
+            if (!await AnswerService.Exists(id))
             {
                 return NotFound(new { Error = String.Format("Answer ID {0} has not been found", id) });
             }

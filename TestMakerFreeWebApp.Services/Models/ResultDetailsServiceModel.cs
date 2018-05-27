@@ -1,12 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.ComponentModel;
+﻿using System;
 using TestMakerFreeWebApp.Common.Mapping;
-using TestMakerFreeWebApp.Services.Models;
+using TestMakerFreeWebApp.Domain.DomainModels;
 
-namespace TestMakerFreeWebApp.Web.ViewModels
+namespace TestMakerFreeWebApp.Services.Models
 {
-    public class ResultViewModel : IMapFrom<ResultDetailsServiceModel>
+    public class ResultDetailsServiceModel : IMapFrom<Result>
     {
         public int Id { get; set; }
 
@@ -20,13 +18,10 @@ namespace TestMakerFreeWebApp.Web.ViewModels
 
         public int? MaxValue { get; set; }
 
-        [DefaultValue(0)]
         public int Type { get; set; }
 
-        [DefaultValue(0)]
         public int Flags { get; set; }
 
-        [JsonIgnore]
         public DateTime CreatedDate { get; set; }
 
         public DateTime LastModifiedDate { get; set; }

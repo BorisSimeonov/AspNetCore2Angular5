@@ -51,7 +51,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
                 .ProjectTo<QuizDetailsServiceModel>()
                 .ToListAsync();
 
-        public async Task<bool> QuizExists(int id)
+        public async Task<bool> Exists(int id)
             => await DbContext.Quizzes.AnyAsync(q => q.Id == id);
 
         public async Task<QuizDetailsServiceModel> Create(

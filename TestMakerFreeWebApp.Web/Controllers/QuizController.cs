@@ -79,7 +79,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 return new StatusCodeResult(500);
             }
 
-            if (!await QuizService.QuizExists(model.Id))
+            if (!await QuizService.Exists(model.Id))
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (!await QuizService.QuizExists(id))
+            if (!await QuizService.Exists(id))
             {
                 return NotFound(new { Error = String.Format("Quiz ID {0} has not been found", id) });
             }

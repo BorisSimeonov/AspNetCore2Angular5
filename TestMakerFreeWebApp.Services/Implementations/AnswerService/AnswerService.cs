@@ -39,7 +39,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.AnswerService
             var now = DateTime.Now;
 
             Answer newAnswer = null;
-            if (await QuestionService.QuestionExists(questionId))
+            if (await QuestionService.Exists(questionId))
             {
                 newAnswer = new Answer
                 {
@@ -75,7 +75,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.AnswerService
                 .ProjectTo<AnswerDetailsServiceModel>()
                 .FirstOrDefaultAsync();
 
-        public async Task<bool> AnswerExists(int id)
+        public async Task<bool> Exists(int id)
             => await DbContext.Answers.AnyAsync(a => a.Id == id);
 
         public async Task<AnswerDetailsServiceModel> Update(int id, string text, string notes, int questionId)

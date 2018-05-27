@@ -40,7 +40,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuestionService
                 .ProjectTo<QuestionDetailsServiceModel>()
                 .ToListAsync();
 
-        public async Task<bool> QuestionExists(int id)
+        public async Task<bool> Exists(int id)
             => await DbContext.Questions.AnyAsync(q => q.Id == id);
 
         public async Task<QuestionDetailsServiceModel> Create(
@@ -51,7 +51,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuestionService
             var now = DateTime.Now;
 
             Question newQuestion = null;
-            if (await QuizService.QuizExists(quizId))
+            if (await QuizService.Exists(quizId))
             {
                 newQuestion = new Question
                 {

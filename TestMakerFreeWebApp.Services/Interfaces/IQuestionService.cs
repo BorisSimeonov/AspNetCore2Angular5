@@ -10,7 +10,7 @@ namespace TestMakerFreeWebApp.Services.Interfaces
         Task<List<QuestionDetailsServiceModel>> All(int quizId);
         Task<QuestionDetailsServiceModel> Create(string text, string notes, int quizId);
         Task<QuestionDetailsServiceModel> Update(int id, string text, string notes, int quizId);
-        Task<bool> QuestionExists(int id);
+        Task<bool> Exists(int id);
         Task Delete(int id);
     }
 }
