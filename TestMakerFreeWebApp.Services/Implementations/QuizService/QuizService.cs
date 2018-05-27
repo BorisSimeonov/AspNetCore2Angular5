@@ -12,16 +12,11 @@ using TestMakerFreeWebApp.Services.Models;
 
 namespace TestMakerFreeWebApp.Services.Implementations.QuizService
 {
-    public class QuizService : IQuizService
+    public class QuizService : BaseService, IQuizService
     {
-        private ApplicationDbContext DbContext { get; }
-
-        private IMapper Mapper { get; }
-
         public QuizService(ApplicationDbContext dbContext, IMapper mapper)
+            : base(dbContext, mapper)
         {
-            DbContext = dbContext;
-            Mapper = mapper;
         }
 
         public async Task<QuizDetailsServiceModel> Get(int id)

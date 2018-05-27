@@ -12,18 +12,13 @@ using TestMakerFreeWebApp.Services.Models;
 
 namespace TestMakerFreeWebApp.Services.Implementations.AnswerService
 {
-    public class AnswerService : IAnswerService
+    public class AnswerService : BaseService, IAnswerService
     {
         private IQuestionService QuestionService { get; }
 
-        private ApplicationDbContext DbContext { get; }
-
-        private IMapper Mapper { get; }
-
         public AnswerService(ApplicationDbContext dbContext, IMapper mapper, IQuestionService questionService)
+            : base(dbContext, mapper)
         {
-            DbContext = dbContext;
-            Mapper = mapper;
             QuestionService = questionService;
         }
 

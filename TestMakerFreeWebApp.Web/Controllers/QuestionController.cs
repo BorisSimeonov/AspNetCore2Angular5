@@ -17,12 +17,11 @@ namespace TestMakerFreeWebApp.Web.Controllers
 
         private IQuizService QuizService { get; }
 
-        private IMapper Mapper { get; }
-
-        public QuestionController(IQuestionService questionService, IMapper mapper)
+        public QuestionController(IQuestionService questionService, IQuizService quizService, IMapper mapper) 
+            : base(mapper)
         {
             QuestionService = questionService;
-            Mapper = mapper;
+            QuizService = quizService;
         }
 
         /// <summary>
@@ -43,7 +42,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 });
             }
 
-            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), JsonSettings);
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 model.Notes,
                 model.QuizId);
 
-            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), JsonSettings);
         }
 
         /// <summary>
@@ -94,7 +93,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 model.Notes,
                 model.QuizId);
 
-            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), JsonSettings);
         }
 
         /// <summary>
@@ -119,9 +118,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
         {
             var questions = await QuestionService.All(quizId);
 
-            return new JsonResult(
-                questions.Select(q => Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(q)),
-                new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(questions.Select(q => Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(q)), JsonSettings);
         }
     }
 }

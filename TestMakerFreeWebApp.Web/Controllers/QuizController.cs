@@ -16,12 +16,9 @@ namespace TestMakerFreeWebApp.Web.Controllers
     {
         private IQuizService QuizService { get; }
 
-        private IMapper Mapper { get; }
-
-        public QuizController(IQuizService quizService, IMapper mapper)
+        public QuizController(IQuizService quizService, IMapper mapper) : base(mapper)
         {
             QuizService = quizService;
-            Mapper = mapper;
         }
 
         /// <summary>
@@ -43,7 +40,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 });
             }
 
-            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), JsonSettings);
         }
 
         /// <summary>
@@ -64,7 +61,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 model.Text,
                 model.Notes);
 
-            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), JsonSettings);
         }
 
         /// <summary>
@@ -91,7 +88,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 model.Text,
                 model.Notes);
 
-            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), JsonSettings);
         }
 
         /// <summary>
@@ -136,8 +133,6 @@ namespace TestMakerFreeWebApp.Web.Controllers
         }
 
         private JsonResult MapAndSerializeResultList(List<QuizDetailsServiceModel> results)
-            => new JsonResult(
-                results.Select(q => Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(q)),
-                new JsonSerializerSettings { Formatting = Formatting.Indented });
+            => new JsonResult(results.Select(q => Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(q)), JsonSettings);
     }
 }
