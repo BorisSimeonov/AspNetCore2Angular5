@@ -29,7 +29,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.AnswerService
                 .ProjectTo<AnswerDetailsServiceModel>()
                 .ToListAsync();
 
-        public async Task<AnswerDetailsServiceModel> Create(string text, string notes, int questionId)
+        public async Task<AnswerDetailsServiceModel> Create(string text, int questionId, int value)
         {
             var now = DateTime.Now;
 
@@ -39,7 +39,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.AnswerService
                 newAnswer = new Answer
                 {
                     Text = text,
-                    Notes = notes,
+                    Value = value,
                     CreatedDate = now,
                     LastModifiedDate = now,
                     QuestionId = questionId
@@ -73,12 +73,12 @@ namespace TestMakerFreeWebApp.Services.Implementations.AnswerService
         public async Task<bool> Exists(int id)
             => await DbContext.Answers.AnyAsync(a => a.Id == id);
 
-        public async Task<AnswerDetailsServiceModel> Update(int id, string text, string notes, int questionId)
+        public async Task<AnswerDetailsServiceModel> Update(int id, string text, int questionId, int value)
         {
             var answer = await DbContext.Answers.FirstAsync(a => a.Id == id);
             answer.Text = text;
-            answer.Notes = notes;
-            answer.QuestionId =questionId;
+            answer.QuestionId = questionId;
+            answer.Value = value;
             answer.LastModifiedDate = DateTime.Now;
 
             await DbContext.SaveChangesAsync();

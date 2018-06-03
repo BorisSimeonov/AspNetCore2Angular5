@@ -40,7 +40,6 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuestionService
 
         public async Task<QuestionDetailsServiceModel> Create(
             string text,
-            string notes,
             int quizId)
         {
             var now = DateTime.Now;
@@ -51,7 +50,6 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuestionService
                 newQuestion = new Question
                 {
                     Text = text,
-                    Notes = notes,
                     CreatedDate = now,
                     LastModifiedDate = now,
                     QuizId = quizId
@@ -67,12 +65,10 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuestionService
         public async Task<QuestionDetailsServiceModel> Update(
             int id,
             string text,
-            string notes,
             int quizId)
         {
             var question = await DbContext.Questions.FirstAsync(q => q.Id == id);
             question.Text = text;
-            question.Notes = notes;
             question.QuizId = quizId;
             question.LastModifiedDate = DateTime.Now;
 

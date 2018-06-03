@@ -59,7 +59,6 @@ namespace TestMakerFreeWebApp.Web.Controllers
 
             QuestionDetailsServiceModel question = await QuestionService.Create(
                 model.Text,
-                model.Notes,
                 model.QuizId);
 
             return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), JsonSettings);
@@ -90,7 +89,6 @@ namespace TestMakerFreeWebApp.Web.Controllers
             QuestionDetailsServiceModel question = await QuestionService.Update(
                 model.Id,
                 model.Text,
-                model.Notes,
                 model.QuizId);
 
             return new JsonResult(Mapper.Map<QuestionDetailsServiceModel, QuestionViewModel>(question), JsonSettings);

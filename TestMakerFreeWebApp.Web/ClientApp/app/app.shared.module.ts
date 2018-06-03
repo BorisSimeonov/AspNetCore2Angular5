@@ -5,14 +5,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
+import { LoginComponent } from "./components/login/login.component";
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
+import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.component";
 import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from "./components/about/about.component";
 import { QuizListComponent } from './components/quiz/quiz-list/quiz-list.component';
 import { QuizComponent } from "./components/quiz/quiz/quiz.component";
 import { QuizEditComponent } from "./components/quiz/quiz-edit/quiz-edit.component";
-import { AboutComponent } from "./components/about/about.component";
-import { LoginComponent } from "./components/login/login.component";
-import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.component";
+import { QuestionListComponent } from "./components/question/question-list/question-list.component";
+import { QuestionEditComponent } from "./components/question/question-edit/question-edit.component";
+import { AnswerListComponent } from "./components/answer/answer-list/answer-list.component";
+import { AnswerEditComponent } from "./components/answer/answer-edit/answer-edit.component";
 
 @NgModule({
     declarations: [
@@ -20,11 +24,21 @@ import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.co
         LoginComponent,
         HomeComponent,
         NavMenuComponent,
+        AboutComponent,
+        PageNotFoundComponent,
+
+        // Quiz components
         QuizListComponent,
         QuizComponent,
         QuizEditComponent,
-        AboutComponent,
-        PageNotFoundComponent
+
+        // Question components
+        QuestionListComponent,
+        QuestionEditComponent,
+
+        // Answer components
+        AnswerListComponent,
+        AnswerEditComponent
     ],
     imports: [
         CommonModule,
@@ -39,6 +53,10 @@ import { PageNotFoundComponent } from "./components/pageNotFound/pagenotfound.co
             { path: 'quiz/create', component: QuizEditComponent },
             { path: 'quiz/:id', component: QuizComponent },
             { path: 'quiz-list', component: QuizListComponent },
+            { path: 'question/edit/:id', component: QuestionEditComponent },
+            { path: 'question/create/:id', component: QuestionEditComponent },
+            { path: 'answer/edit/:id', component: AnswerEditComponent },
+            { path: 'answer/create/:id', component: AnswerEditComponent },
             { path: '**', component: PageNotFoundComponent }
         ])
     ]

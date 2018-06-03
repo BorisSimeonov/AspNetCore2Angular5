@@ -24,3 +24,9 @@
 .quiz label {
     font-size: larger;
 }
+
+.btn {
+    margin: 2px;
+    width: 40%;
+    max-width: 200px;
+}

@@ -1,12 +1,13 @@
 ﻿import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
-import { HttpClient } from '@angular/common/http'
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: "quiz-edit",
     templateUrl: './quiz-edit.component.html',
     styleUrls: ['./quiz-edit.component.css']
 })
+
 export class QuizEditComponent implements OnInit {
     title!: string;
     quiz: Quiz;

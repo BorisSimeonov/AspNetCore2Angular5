@@ -52,8 +52,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
         public async Task<QuizDetailsServiceModel> Create(
             string title, 
             string description, 
-            string text, 
-            string notes)
+            string text)
         {
             var userId = DbContext.Users.Where(u => u.UserName == "Admin").FirstOrDefault().Id;
             var now = DateTime.Now;
@@ -63,7 +62,6 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
                 Title = title,
                 Description = description,
                 Text = text,
-                Notes = notes,
                 CreatedDate = now,
                 LastModifiedDate = now,
                 UserId = userId
@@ -78,15 +76,13 @@ namespace TestMakerFreeWebApp.Services.Implementations.QuizService
             int id, 
             string title, 
             string description, 
-            string text, 
-            string notes)
+            string text)
         {
             var quiz = await DbContext.Quizzes.FirstAsync(q => q.Id == id);
 
             quiz.Title = title;
             quiz.Description = description;
             quiz.Text = text;
-            quiz.Notes = notes;
             quiz.LastModifiedDate = DateTime.Now;
 
             await DbContext.SaveChangesAsync();

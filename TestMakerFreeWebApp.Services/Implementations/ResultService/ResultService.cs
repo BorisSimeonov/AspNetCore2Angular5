@@ -28,7 +28,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.ResultService
                 .ProjectTo<ResultDetailsServiceModel>()
                 .FirstOrDefaultAsync();
 
-        public async Task<ResultDetailsServiceModel> Create(string text, string notes, int? minValue, int? maxValue, int quizId)
+        public async Task<ResultDetailsServiceModel> Create(string text, int? minValue, int? maxValue, int quizId)
         {
             var now = DateTime.Now;
 
@@ -38,7 +38,6 @@ namespace TestMakerFreeWebApp.Services.Implementations.ResultService
                 newResult = new Result
                 {
                     Text = text,
-                    Notes = notes,
                     CreatedDate = now,
                     MinValue = minValue,
                     MaxValue = maxValue,
@@ -54,11 +53,10 @@ namespace TestMakerFreeWebApp.Services.Implementations.ResultService
 
         }
 
-        public async Task<ResultDetailsServiceModel> Update(int id, string text, string notes, int? minValue, int? maxValue, int quizId)
+        public async Task<ResultDetailsServiceModel> Update(int id, string text, int? minValue, int? maxValue, int quizId)
         {
             var result = await DbContext.Results.FirstAsync(r => r.Id == id);
             result.Text = text;
-            result.Notes = notes;
             result.QuizId = quizId;
             result.MinValue = minValue;
             result.MaxValue = maxValue;

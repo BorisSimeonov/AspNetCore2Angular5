@@ -8,8 +8,8 @@ namespace TestMakerFreeWebApp.Services.Interfaces
     {
         Task<AnswerDetailsServiceModel> Get(int id);
         Task<List<AnswerDetailsServiceModel>> All(int questionId);
-        Task<AnswerDetailsServiceModel> Create(string text, string notes, int questionId);
-        Task<AnswerDetailsServiceModel> Update(int id, string text, string notes, int questionId);
+        Task<AnswerDetailsServiceModel> Create(string text, int questionId, int value);
+        Task<AnswerDetailsServiceModel> Update(int id, string text, int questionId, int value);
         Task<bool> Exists(int id);
         Task Delete(int id);
     }

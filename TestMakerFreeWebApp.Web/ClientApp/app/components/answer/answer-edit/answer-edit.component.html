@@ -1,0 +1,43 @@
+﻿<h2 class="text-center text-primary">{{title}}</h2>
+<div>
+    <div class="text-center">
+        <label for="text" class="text-primary">Answer text:</label>
+        <br />
+        <textarea id="text"
+                  class="form-control"
+                  [(ngModel)]="answer.Text"
+                  rows="4"
+                  placeholder="enter a suitable text..."></textarea>
+        <br />
+        <div>
+            <label class="text-primary" for="value">Score Value:</label>
+            <br />
+            <select id="value"
+                    name="value"
+                    class="form-control"
+                    [(ngModel)]="answer.Value">
+                <option *ngFor="let num of [-5,-4,-3,-2,-1,0,1,2,3,4,5]"
+                        [value]="num">
+                    {{num}}
+                </option>
+            </select>
+        </div>
+        <br />
+    </div>
+    <div class="text-center">
+        <input *ngIf="editMode" 
+               type="button" 
+               value="Apply Changes"
+               class="btn btn-success"
+               (click)="onSubmit(answer)" />
+        <input *ngIf="!editMode" 
+               type="button" 
+               value="Create Answer" 
+               class="btn btn-success"
+               (click)="onSubmit(answer)" />
+        <input type="button" 
+               value="Cancel" 
+               class="btn btn-danger"
+               (click)="onBack()" />
+    </div>
+</div>

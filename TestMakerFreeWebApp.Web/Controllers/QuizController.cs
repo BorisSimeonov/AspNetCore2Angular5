@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,8 +57,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
             QuizDetailsServiceModel quiz = await QuizService.Create(
                 model.Title,
                 model.Description,
-                model.Text,
-                model.Notes);
+                model.Text);
 
             return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), JsonSettings);
         }
@@ -85,8 +83,7 @@ namespace TestMakerFreeWebApp.Web.Controllers
                 model.Id,
                 model.Title,
                 model.Description,
-                model.Text,
-                model.Notes);
+                model.Text);
 
             return new JsonResult(Mapper.Map<QuizDetailsServiceModel, QuizViewModel>(quiz), JsonSettings);
         }

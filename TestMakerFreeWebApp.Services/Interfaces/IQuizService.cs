@@ -10,8 +10,8 @@ namespace TestMakerFreeWebApp.Services.Interfaces
         Task<List<QuizDetailsServiceModel>> GetLatest(int num);
         Task<List<QuizDetailsServiceModel>> GetByTitle(int num);
         Task<List<QuizDetailsServiceModel>> GetRandom(int num);
-        Task<QuizDetailsServiceModel> Create(string title, string description, string text, string notes);
-        Task<QuizDetailsServiceModel> Update(int id, string title, string description, string text, string notes);
+        Task<QuizDetailsServiceModel> Create(string title, string description, string text);
+        Task<QuizDetailsServiceModel> Update(int id, string title, string description, string text);
         Task<bool> Exists(int id);
         Task Delete(int id);
     }

@@ -1,0 +1,11 @@
+﻿.btn {
+    margin: 2px;
+    width: 90%;
+    max-width: 200px;
+    min-width: 70px;
+}
+
+.btn-add {
+    max-width: 100%;
+    min-width: 150px;
+}

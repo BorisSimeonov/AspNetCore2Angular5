@@ -1,0 +1,29 @@
+﻿<h2 class="text-center text-primary">{{title}}</h2>
+<div class="question-edit">
+    <div class="text-center">
+        <label for="text" class="text-primary">Question text:</label>
+        <br />
+        <textarea id="text"
+                  class="form-control"
+                  [(ngModel)]="question.Text"
+                  rows="4"
+                  placeholder="enter a suitable text..."></textarea>
+    </div>
+    <div class="text-center">
+        <input *ngIf="editMode"
+               type="button"
+               value="Apply Changes"
+               class="btn btn-success"
+               (click)="onSubmit(question)" />
+        <input *ngIf="!editMode"
+               type="button"
+               value="Create Question"
+               class="btn btn-success"
+               (click)="onSubmit(question)" />
+        <input type="button"
+               value="Cancel"
+               class="btn btn-danger"
+               (click)="onBack()" />
+    </div>
+    <answer-list [question]="question" *ngIf="editMode"></answer-list>
+</div>

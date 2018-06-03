@@ -59,7 +59,6 @@ namespace TestMakerFreeWebApp.Web.Controllers
 
             var result = await ResultService.Create(
                 model.Text,
-                model.Notes,
                 model.MinValue,
                 model.MaxValue,
                 model.QuizId);
@@ -92,7 +91,6 @@ namespace TestMakerFreeWebApp.Web.Controllers
             ResultDetailsServiceModel result = await ResultService.Update(
                 model.Id,
                 model.Text,
-                model.Notes,
                 model.MinValue,
                 model.MaxValue,
                 model.QuizId);

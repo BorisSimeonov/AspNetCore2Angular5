@@ -59,8 +59,8 @@ namespace TestMakerFreeWebApp.Web.Controllers
 
             var answer = await AnswerService.Create(
                 model.Text,
-                model.Notes,
-                model.QuestionId);
+                model.QuestionId,
+                model.Value);
 
             return new JsonResult(Mapper.Map<AnswerDetailsServiceModel, AnswerViewModel>(answer), JsonSettings);
         }
@@ -90,8 +90,8 @@ namespace TestMakerFreeWebApp.Web.Controllers
             AnswerDetailsServiceModel answer = await AnswerService.Update(
                 model.Id,
                 model.Text,
-                model.Notes,
-                model.QuestionId);
+                model.QuestionId,
+                model.Value);
 
             return new JsonResult(Mapper.Map<AnswerDetailsServiceModel, AnswerViewModel>(answer), JsonSettings);
         }
