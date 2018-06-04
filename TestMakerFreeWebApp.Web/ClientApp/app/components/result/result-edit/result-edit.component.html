@@ -1,0 +1,46 @@
+﻿<h2 class="text-center text-primary">{{title}}</h2>
+<div>
+    <div class="text-center">
+        <label for="text" class="text-primary">Result text:</label>
+        <br />
+        <textarea id="text"
+                  [(ngModel)]="result.Text"
+                  rows="4"
+                  class="form-control"
+                  placeholder="enter a suitable text..."></textarea>
+    </div>
+    <div class="text-center">
+        <label for="MinValue">Minimum Score Value:</label>
+        <br />
+        <input type="number" 
+               id="MinValue" 
+               name="MinValue"
+               class="form-control" 
+               [(ngModel)]="result.MinValue" />
+    </div>
+    <div>
+        <label for="MaxValue">Maximum Score Value:</label>
+        <br />
+        <input type="number" 
+               id="MaxValue" 
+               name="MaxValue"
+               class="form-control"
+               [(ngModel)]="result.MaxValue" />
+    </div>
+    <div class="text-center">
+        <input *ngIf="editMode"
+               type="button"
+               value="Apply Changes"
+               class="btn btn-success"
+               (click)="onSubmit(result)" />
+        <input *ngIf="!editMode"
+               type="button"
+               value="Create Question"
+               class="btn btn-success"
+               (click)="onSubmit(result)" />
+        <input type="button"
+               value="Cancel"
+               class="btn btn-danger"
+               (click)="onBack()" />
+    </div>
+</div>

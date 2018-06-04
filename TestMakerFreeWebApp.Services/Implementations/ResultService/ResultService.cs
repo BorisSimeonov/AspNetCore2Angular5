@@ -23,7 +23,7 @@ namespace TestMakerFreeWebApp.Services.Implementations.ResultService
         }
 
         public async Task<ResultDetailsServiceModel> Get(int id)
-            => await DbContext.Answers
+            => await DbContext.Results
                 .Where(r => r.Id == id)
                 .ProjectTo<ResultDetailsServiceModel>()
                 .FirstOrDefaultAsync();

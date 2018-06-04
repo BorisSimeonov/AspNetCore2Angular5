@@ -34,7 +34,8 @@ export class QuestionEditComponent {
 
     getQuestion(id: number) {
         let url = `${this.baseUrl}api/question/${id}`;
-        this.http.get<Question>(url)
+        this.http
+            .get<Question>(url)
             .subscribe(result => {
                 this.question = result
                 this.title = `Edit - ${result.Text}`
