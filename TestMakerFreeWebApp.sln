@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMakerFreeWebApp.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMakerFreeWebApp.Domain", "TestMakerFreeWebApp.Domain\TestMakerFreeWebApp.Domain.csproj", "{F91AAD7B-1195-4542-B260-9B203ECEA06C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMakerFreeWebApp.Common", "TestMakerFreeWebApp.Common\TestMakerFreeWebApp.Common.csproj", "{725CF46E-1972-4C3F-B0ED-F8461D8565E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMakerFreeWebApp.Common", "TestMakerFreeWebApp.Common\TestMakerFreeWebApp.Common.csproj", "{725CF46E-1972-4C3F-B0ED-F8461D8565E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +44,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		LessCompiler = 6cd8d844-374c-44bf-b556-b5ce1d350911
 		SolutionGuid = {83873724-B7D0-457E-BC74-D0D02ABF01ED}
 	EndGlobalSection
 EndGlobal

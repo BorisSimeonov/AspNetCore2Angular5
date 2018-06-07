@@ -1,38 +1,51 @@
-<div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]="['/home']">TestMakerFree</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/login']">
-                        <span class='glyphicon glyphicon-log-in'></span> Login
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/home']">
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand">Free Tests</a>
+        <button class="toggle-btn" type="button" data-toggle="collapse" data-target="#CollapsingNavbar">
+            <span>=</span>
+        </button>
+    </div>
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="CollapsingNavbar">
+            <ul class="nav navbar-nav">
+                <li [routerLinkActive]="['link-active']" class="nav-item">
+                    <a [routerLink]="['/home']" class="nav-link">
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/about']">
-                        <span class='glyphicon glyphicon-info-sign'></span> About
-                    </a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quiz <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li [routerLinkActive]="['link-active']" class="nav-item">
+                            <a [routerLink]="['/quiz/create']" class="nav-link">
+                                <span class='glyphicon glyphicon-cog'></span> Create Quiz
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/quiz/create']">
-                        <span class='glyphicon glyphicon-cog'></span> Create Quiz
-                    </a>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Control Panel <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li [routerLinkActive]="['link-active']" class="nav-item">
+                            <a [routerLink]="['/signup']" class="nav-link">
+                                <span class="glyphicon glyphicon-user"></span> Sign Up
+                            </a>
+                        </li>
+                        <li [routerLinkActive]="['link-active']" class="nav-item">
+                            <a [routerLink]="['/login']" class="nav-link">
+                                <span class='glyphicon glyphicon-log-in'></span> Login
+                            </a>
+                        </li>
+                        <li [routerLinkActive]="['link-active']" class="nav-item">
+                            <a [routerLink]="['/about']" class="nav-link">
+                                <span class='glyphicon glyphicon-info-sign'></span> About
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </div>
-</div>
+</nav>

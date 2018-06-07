@@ -1,12 +1,10 @@
-﻿.quiz-edit div {
-    margin: 10px;
+.quiz-edit div {
+  margin: 10px;
 }
-
 .quiz-edit .form-control {
-    width: 100%;
+  width: 100%;
 }
-
 .quiz-edit textarea {
-    resize: vertical;
-    max-height: 250px;
+  resize: vertical;
+  max-height: 250px;
 }

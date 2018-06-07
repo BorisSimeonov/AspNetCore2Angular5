@@ -1,9 +1,8 @@
-﻿textarea {
-    resize: vertical;
+textarea {
+  resize: vertical;
 }
-
 .btn {
-    margin: 2px;
-    width: 40%;
-    max-width: 200px;
+  margin: 2px;
+  width: 40%;
+  max-width: 200px;
 }

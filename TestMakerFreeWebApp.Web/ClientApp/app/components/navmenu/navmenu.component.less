@@ -1,0 +1,34 @@
+.navbar {
+    min-width: 400px;
+    border-radius: 5px;
+    padding: 10px;
+
+    &amp;.navbar-header {
+        cursor: default;
+    }
+}
+
+@media (min-width: 768px){
+    .navbar-header {
+        display: inline;
+    }
+
+    .toggle-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .toggle-btn {
+        float: right;
+        background-color: black;
+        border-radius: 50px;
+        width: 50px;
+
+        span {
+            color: white;
+            font-size: 2em;
+        }
+    }
+
+}

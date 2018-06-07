@@ -1,0 +1,1 @@
+﻿.navbar{min-width:400px;border-radius:5px;padding:10px}.navbar .navbar-header{cursor:default}.nav-link,.dropdown-toggle{text-align:center}@media(min-width:768px){.navbar-header{display:inline}.toggle-btn{display:none}}@media(max-width:767px){.toggle-btn{float:right;background-color:#000;border-radius:50px;width:50px}.toggle-btn span{color:#fff;font-size:2em}}
