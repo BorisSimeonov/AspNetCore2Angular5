@@ -1,5 +1,20 @@
-<h1>Welcome to TestMakerFree</h1>
-<p>A sample SPA project made with .NET Core and Angular.</p>
-<quiz-list class="latest"></quiz-list>
-<quiz-list class="byTitle"></quiz-list>
-<quiz-list class="random"></quiz-list>
+<div class="text-center">
+    <h1>Welcome to TestMakerFree</h1>
+    <p>A sample SPA project made with .NET Core and Angular.</p>
+
+
+    <div>
+        <select class="form-control" 
+                [(ngModel)]="selectedOption">
+            <option *ngFor="let o of options">{{o}}</option>
+        </select>
+    </div>
+
+    <br />
+    <br />
+    <div>
+        <quiz-list *ngIf="selectedOption && selectedOption === 'Latest'" class="latest"></quiz-list>
+        <quiz-list *ngIf="selectedOption && selectedOption === 'Random'" class="random"></quiz-list>
+        <quiz-list *ngIf="selectedOption && selectedOption === 'By Title'" class="byTitle"></quiz-list>
+    </div>
+</div>

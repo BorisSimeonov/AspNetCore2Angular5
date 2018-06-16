@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
+    options: string[] = ["Latest", "By Title", "Random"];
+    selectedOption: string;
+
+    constructor() {
+        this.selectedOption = this.options[0];
+    }
 }
